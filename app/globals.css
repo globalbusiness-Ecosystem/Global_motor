@@ -1,0 +1,185 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ── Carbon black base: #080808 ── */
+  --background: #080808;
+  --foreground: #f0ede6;
+
+  /* ── Card / surface layers ── */
+  --card: #111010;
+  --card-foreground: #f0ede6;
+  --surface-1: #131211;
+  --surface-2: #1c1a18;
+  --surface-3: #252220;
+
+  /* ── Gold accent: #c9a84c ── */
+  --pi-gold: #c9a84c;
+  --pi-gold-dim: #9a7f38;
+  --pi-gold-foreground: #080808;
+
+  /* ── Semantic tokens ── */
+  --popover: #1c1a18;
+  --popover-foreground: #f0ede6;
+  --primary: #c9a84c;
+  --primary-foreground: #080808;
+  --secondary: #1c1a18;
+  --secondary-foreground: #a09880;
+  --muted: #1c1a18;
+  --muted-foreground: #5e5a52;
+  --accent: #c9a84c;
+  --accent-foreground: #080808;
+  --destructive: #c0392b;
+  --destructive-foreground: #f0ede6;
+  --border: #252220;
+  --input: #1c1a18;
+  --ring: #c9a84c;
+
+  /* ── Charts ── */
+  --chart-1: #c9a84c;
+  --chart-2: #9a7f38;
+  --chart-3: #4e9e6a;
+  --chart-4: #3d7ab5;
+  --chart-5: #b84040;
+
+  --radius: 1rem;
+
+  /* ── Sidebar ── */
+  --sidebar: #0c0b0a;
+  --sidebar-foreground: #f0ede6;
+  --sidebar-primary: #c9a84c;
+  --sidebar-primary-foreground: #080808;
+  --sidebar-accent: #1c1a18;
+  --sidebar-accent-foreground: #f0ede6;
+  --sidebar-border: #252220;
+  --sidebar-ring: #c9a84c;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-pi-gold: var(--pi-gold);
+  --color-pi-gold-dim: var(--pi-gold-dim);
+  --color-pi-gold-foreground: var(--pi-gold-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ── Scrollbar ── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Speed lines ── */
+@keyframes speed-line-travel {
+  0%   { transform: translateX(-120%) skewX(-12deg); opacity: 0; }
+  8%   { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateX(120vw) skewX(-12deg); opacity: 0; }
+}
+
+.speed-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 168, 76, 0.05) 20%,
+    rgba(201, 168, 76, 0.20) 50%,
+    rgba(201, 168, 76, 0.05) 80%,
+    transparent 100%
+  );
+  animation: speed-line-travel linear infinite;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* ── Floating car ── */
+@keyframes float-car {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50%       { transform: translateY(-14px) rotate(2deg); }
+}
+.animate-float-car { animation: float-car 3.6s ease-in-out infinite; }
+
+/* ── Gold pulse ring ── */
+@keyframes gold-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.45); }
+  50%       { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0); }
+}
+.animate-gold-pulse { animation: gold-pulse 2.2s ease-in-out infinite; }
+
+/* ── Slide-up modal ── */
+@keyframes slide-up-in {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+.animate-slide-up { animation: slide-up-in 0.38s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+
+/* ── Fade in ── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-in { animation: fade-in 0.22s ease forwards; }
+
+/* ── Gold gradient text ── */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #e0c06a 0%, #c9a84c 50%, #a8893c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── RTL helpers ── */
+.rtl { direction: rtl; }
+.ltr { direction: ltr; }
