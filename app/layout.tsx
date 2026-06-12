@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Global Motor — Pi Car Marketplace",
   description: "The first global car marketplace on Pi Network. Buy and sell vehicles using Pi cryptocurrency. No banks. No borders. Just Pi.",
-    generator: 'v0.app'
+  generator: 'v0.app'
 };
 
 export const viewport: Viewport = {
@@ -26,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
+        <script src="https://sdk.minepi.com/pi-sdk.js" async></script>
         <style>{`
 html {
   font-family: ${GeistSans.style.fontFamily};
